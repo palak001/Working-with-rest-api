@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rest API</title>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function(){
+            const getBtn = document.getElementById('get');
+            const postBtn = document.getElementById('post');
+
+            getBtn.addEventListener('click', () => {
+            fetch('http://localhost:3000/api/users')
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+            });
+
+            postBtn.addEventListener('click', () => {
+            fetch('http://localhost:3000/api/users',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({'name' : 'User3', 'gender': 'm'}),
+                    headers: {
+                    'Content-Type': 'application/json'
+                    }
+                
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <button id = "get">GET request</button>
+    <button id = "post">POST request</button>  
+</body>
+</html>
